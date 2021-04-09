@@ -1,0 +1,2 @@
+com/project/CensusAnalyzerTest.java
+ com.project.CensusAnalyzerTest
