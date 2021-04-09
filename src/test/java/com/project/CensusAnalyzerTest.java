@@ -26,5 +26,21 @@ public class CensusAnalyzerTest
     }
 
 
+    @Test
+    public void givenIndiaCensusCSVFileofWrongPath_shouldReturnCorrectRecords()
+    {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyzerException.class);
+            censusAnalyzerMain.loadIndiaCensusFile(WRONG_FILE_PATH);
+        }
+        catch (CensusAnalyzerException e)
+        {
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
+        }
+
+    }
 
 }
