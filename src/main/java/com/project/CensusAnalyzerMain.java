@@ -14,10 +14,7 @@ public class CensusAnalyzerMain {
         try
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCsvFilePath));
-            CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-            csvToBeanBuilder.withType(IndiaCensusCSV.class).withIgnoreLeadingWhiteSpace(true);
-            CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
-            Iterator<IndiaCensusCSV> csvIterator = csvToBean.iterator();
+            Iterator<IndiaCensusCSV> csvIterator = this.loadIndiaCSVFile(reader, IndiaCensusCSV.class);
             int numOfEntries = 0;
             while (csvIterator.hasNext())
             {
@@ -34,14 +31,12 @@ public class CensusAnalyzerMain {
 
     }
 
-    public int loadIndiaStateCodeFile(String indiaStateCodeFilePath) throws CensusAnalyzerException {
+    public int loadIndiaStateCodeFile(String indiaStateCodeFilePath) throws CensusAnalyzerException
+    {
         try
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaStateCodeFilePath));
-            CsvToBeanBuilder<IndiaStateCodeCsv> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-            csvToBeanBuilder.withType(IndiaStateCodeCsv.class).withIgnoreLeadingWhiteSpace(true);
-            CsvToBean<IndiaStateCodeCsv> csvToBean = csvToBeanBuilder.build();
-            Iterator<IndiaStateCodeCsv> csvIterator = csvToBean.iterator();
+            Iterator<IndiaStateCodeCsv> csvIterator = this.loadIndiaCSVFile(reader, IndiaStateCodeCsv.class);
             int numOfEntries = 0;
             while (csvIterator.hasNext())
             {
@@ -57,6 +52,13 @@ public class CensusAnalyzerMain {
         }
     }
 
+    private  <E>Iterator <E> loadIndiaCSVFile(Reader reader, Class csvClass)
+    {
 
+        CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+        csvToBeanBuilder.withType(csvClass).withIgnoreLeadingWhiteSpace(true);
+        CsvToBean<E> csvToBean = csvToBeanBuilder.build();
+        return csvToBean.iterator();
+    }
     }
 
