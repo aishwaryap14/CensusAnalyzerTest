@@ -7,21 +7,17 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.stream.StreamSupport;
 
-public class CensusAnalyzerMain {
+public class CensusAnalyzerMain
+{
     public int loadIndiaCensusFile(String indiaCensusCsvFilePath) throws CensusAnalyzerException
     {
         try
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCsvFilePath));
             Iterator<IndiaCensusCSV> csvIterator = this.loadIndiaCSVFile(reader, IndiaCensusCSV.class);
-            int numOfEntries = 0;
-            while (csvIterator.hasNext())
-            {
-                numOfEntries++;
-                IndiaCensusCSV indiaCensusCSV = csvIterator.next();
-            }
-            return numOfEntries;
+            return getRecordCount(csvIterator);
         }
         catch (IOException e)
         {
@@ -37,13 +33,7 @@ public class CensusAnalyzerMain {
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaStateCodeFilePath));
             Iterator<IndiaStateCodeCsv> csvIterator = this.loadIndiaCSVFile(reader, IndiaStateCodeCsv.class);
-            int numOfEntries = 0;
-            while (csvIterator.hasNext())
-            {
-                numOfEntries++;
-                IndiaStateCodeCsv stateCodeCsv = csvIterator.next();
-            }
-            return numOfEntries;
+            return getRecordCount(csvIterator);
         }
         catch (IOException e)
         {
@@ -60,5 +50,17 @@ public class CensusAnalyzerMain {
         CsvToBean<E> csvToBean = csvToBeanBuilder.build();
         return csvToBean.iterator();
     }
+
+    private <E>int getRecordCount (Iterator<E> iterator)
+    {
+        Iterable<E> csvIterable = () -> iterator;
+        int numOfEntries = 0;
+        while (iterator.hasNext())
+        {
+            numOfEntries++;
+            E enext = iterator.next();
+        }
+        return numOfEntries;
     }
+}
 
