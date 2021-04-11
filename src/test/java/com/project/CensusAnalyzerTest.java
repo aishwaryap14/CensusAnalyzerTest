@@ -63,12 +63,15 @@ public class CensusAnalyzerTest
     @Test
     public void givenIndiaStateCSVFileofWrongPath_shouldReturnException()
     {
-        try {
+        try
+        {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
             ExpectedException exceptionRule = ExpectedException.none();
             exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATEFILE_PATH);
-        } catch (CensusAnalyzerException e) {
+        }
+        catch (CensusAnalyzerException e)
+        {
             Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }

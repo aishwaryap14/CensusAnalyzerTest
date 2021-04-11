@@ -16,7 +16,8 @@ public class CensusAnalyzerMain
         try
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCsvFilePath));
-            Iterator<IndiaCensusCSV> csvIterator = this.loadIndiaCSVFile(reader, IndiaCensusCSV.class);
+            Iterator<IndiaCensusCSV> csvIterator = new OpenCsvBuilder().
+                                                       loadIndiaCSVFile(reader, IndiaCensusCSV.class);
             return getRecordCount(csvIterator);
         }
         catch (IOException e)
@@ -32,7 +33,8 @@ public class CensusAnalyzerMain
         try
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaStateCodeFilePath));
-            Iterator<IndiaStateCodeCsv> csvIterator = this.loadIndiaCSVFile(reader, IndiaStateCodeCsv.class);
+            Iterator<IndiaStateCodeCsv> csvIterator = new OpenCsvBuilder().
+                                                          loadIndiaCSVFile(reader, IndiaStateCodeCsv.class);
             return getRecordCount(csvIterator);
         }
         catch (IOException e)
@@ -42,14 +44,7 @@ public class CensusAnalyzerMain
         }
     }
 
-    private  <E>Iterator <E> loadIndiaCSVFile(Reader reader, Class csvClass)
-    {
 
-        CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-        csvToBeanBuilder.withType(csvClass).withIgnoreLeadingWhiteSpace(true);
-        CsvToBean<E> csvToBean = csvToBeanBuilder.build();
-        return csvToBean.iterator();
-    }
 
     private <E>int getRecordCount (Iterator<E> iterator)
     {
