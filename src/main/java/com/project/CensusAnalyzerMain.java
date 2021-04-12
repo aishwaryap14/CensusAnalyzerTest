@@ -25,6 +25,11 @@ public class CensusAnalyzerMain
             throw new CensusAnalyzerException(e.getMessage(),
                     CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
+        catch (RuntimeException e)
+        {
+            throw new CensusAnalyzerException(e.getMessage(),
+                    CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM);
+        }
 
     }
 
@@ -41,6 +46,11 @@ public class CensusAnalyzerMain
         {
             throw new CensusAnalyzerException(e.getMessage(),
                     CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM);
+        }
+        catch (RuntimeException e)
+        {
+            throw new CensusAnalyzerException(e.getMessage(),
+                    CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM);
         }
     }
 
