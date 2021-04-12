@@ -59,9 +59,33 @@ public class CensusAnalyzerTest
             exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_HEADER);
         } catch (CensusAnalyzerException e) {
-            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM, e.type);
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
         }
     }
+    @Test
+    public void givenIndiaCensusCSVFileofWrongDelimeter_shouldReturnException() {
+        try {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyzerException.class);
+            censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_DELIMETER);
+        } catch (CensusAnalyzerException e) {
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
+        }
+    }
+    @Test
+    public void givenIndiaCensusCSVFileofWrongType_shouldReturnException() {
+        try {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyzerException.class);
+            censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_TYPE);
+        } catch (CensusAnalyzerException e) {
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
+        }
+    }
+
+
 //-----------------------------------------------------------------------------------//
     @Test
     public void givenIndiaStateCodeCsvFile_ShouldReturnCorrectRecords()
@@ -106,7 +130,38 @@ public class CensusAnalyzerTest
         }
         catch (CensusAnalyzerException e)
         {
-            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM, e.type);
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
+        }
+    }
+    @Test
+    public void givenIndiaStateCSVFileofWrongDelimeter_shouldReturnException()
+    {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyzerException.class);
+            censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATE_CODE_FILE_DELIMETER);
+        }
+        catch (CensusAnalyzerException e)
+        {
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
+        }
+    }
+
+    @Test
+    public void givenIndiaStateCSVFileofWrongType_shouldReturnException()
+    {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyzerException.class);
+            censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATE_CODE_FILE_TYPE);
+        }
+        catch (CensusAnalyzerException e)
+        {
+            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
         }
     }
 

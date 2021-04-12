@@ -28,8 +28,10 @@ public class CensusAnalyzerMain
         catch (RuntimeException e)
         {
             throw new CensusAnalyzerException(e.getMessage(),
-                    CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM);
+                    CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM);
         }
+
+
 
     }
 
@@ -50,8 +52,10 @@ public class CensusAnalyzerMain
         catch (RuntimeException e)
         {
             throw new CensusAnalyzerException(e.getMessage(),
-                    CensusAnalyzerException.ExceptionType.CENSUS_HEADER_PROBLEM);
+                    CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM);
         }
+
+
     }
 
 
