@@ -1,5 +1,6 @@
 package com.bridgelab;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -85,9 +86,20 @@ public class CensusAnalyzerTest
         }
     }
 
-//    @Test
-//    public void whenGivenCensusCsvData_when() {
-//    }
+    @Test
+    public void whenGivenCensusCsvData_whenSortedOnState_ShouldReturnSortedResult()
+    {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            censusAnalyzerMain.loadIndiaCensusFile(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedData = censusAnalyzerMain.getStateWiseSortedCsvData();
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Andhra Pradesh", censusCSV[0].state);
+        }
+        catch (CensusAnalyzerException e){}
+
+    }
 
     //-----------------------------------------------------------------------------------//
     @Test
