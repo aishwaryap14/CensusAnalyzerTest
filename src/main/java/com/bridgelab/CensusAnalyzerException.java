@@ -2,9 +2,11 @@ package com.bridgelab;
 
 public class CensusAnalyzerException extends Exception
 {
+
+
     enum ExceptionType
     {
-        CENSUS_FILE_PROBLEM, CENSUS_CONTENT_PROBLEM,UNABLE_TO_PARSE
+        CENSUS_FILE_PROBLEM, CENSUS_CONTENT_PROBLEM,UNABLE_TO_PARSE,NO_DATA_FOUND
     }
 
     ExceptionType type;
