@@ -1,9 +1,9 @@
-com/project/CensusAnalyzerMain.java
- com.project.CensusAnalyzerMain
-com/project/IndiaStateCodeCsv.java
- com.project.IndiaStateCodeCsv
-com/project/CensusAnalyzerException.java
- com.project.CensusAnalyzerException
- com.project.CensusAnalyzerException$ExceptionType
-com/project/IndiaCensusCSV.java
- com.project.IndiaCensusCSV
+com/bridgelab/IndiaStateCodeCsv.java
+ com.bridgelab.IndiaStateCodeCsv
+com/bridgelab/IndiaCensusCSV.java
+ com.bridgelab.IndiaCensusCSV
+com/bridgelab/CensusAnalyzerException.java
+ com.bridgelab.CensusAnalyzerException
+ com.bridgelab.CensusAnalyzerException$ExceptionType
+com/bridgelab/CensusAnalyzerMain.java
+ com.bridgelab.CensusAnalyzerMain

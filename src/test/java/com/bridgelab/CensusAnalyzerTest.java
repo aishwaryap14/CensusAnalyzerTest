@@ -1,4 +1,4 @@
-package com.project;
+package com.bridgelab;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -85,8 +85,11 @@ public class CensusAnalyzerTest
         }
     }
 
+//    @Test
+//    public void whenGivenCensusCsvData_when() {
+//    }
 
-//-----------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------//
     @Test
     public void givenIndiaStateCodeCsvFile_ShouldReturnCorrectRecords()
     {

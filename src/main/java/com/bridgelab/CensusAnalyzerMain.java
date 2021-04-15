@@ -1,7 +1,8 @@
-package com.project;
+package com.bridgelab;
 
 //import com.bridgelabz.ICsvBuilder;
 
+import com.bridgelabz.CsvBuilderException;
 import com.bridgelabz.CsvBuilderfactory;
 import com.bridgelabz.ICsvBuilder;
 
@@ -10,6 +11,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 
 public class CensusAnalyzerMain
 {
@@ -19,8 +21,8 @@ public class CensusAnalyzerMain
         {
             Reader reader = Files.newBufferedReader(Paths.get(indiaCensusCsvFilePath));
             ICsvBuilder csvBuilder = CsvBuilderfactory.createCsvBuilder();
-            Iterator<IndiaCensusCSV> csvIterator = csvBuilder.loadIndiaCSVFile(reader, IndiaCensusCSV.class);
-            return getRecordCount(csvIterator);
+            List<IndiaCensusCSV> csvList = csvBuilder.loadIndiaCSVFileList(reader, IndiaCensusCSV.class);
+            return csvList.size();
         }
         catch (IOException e)
         {
@@ -32,8 +34,11 @@ public class CensusAnalyzerMain
             throw new CensusAnalyzerException(e.getMessage(),
                     CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM);
         }
-
-
+        catch (CsvBuilderException e)
+        {
+            throw new CensusAnalyzerException(e.getMessage(),
+                    CensusAnalyzerException.ExceptionType.UNABLE_TO_PARSE);
+        }
 
     }
 
@@ -56,8 +61,11 @@ public class CensusAnalyzerMain
             throw new CensusAnalyzerException(e.getMessage(),
                     CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM);
         }
-
-
+        catch (CsvBuilderException e)
+        {
+            throw new CensusAnalyzerException(e.getMessage(),
+                    CensusAnalyzerException.ExceptionType.UNABLE_TO_PARSE);
+        }
     }
 
 

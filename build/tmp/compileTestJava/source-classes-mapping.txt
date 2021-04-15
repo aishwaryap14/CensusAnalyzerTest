@@ -1,2 +1,2 @@
-com/project/CensusAnalyzerTest.java
- com.project.CensusAnalyzerTest
+com/bridgelab/CensusAnalyzerTest.java
+ com.bridgelab.CensusAnalyzerTest
