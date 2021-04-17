@@ -3,7 +3,6 @@ package com.bridgelab;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 
 public class CensusAnalyzerTest
@@ -42,8 +41,6 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUSFILE_PATH);
         }
         catch (CensusAnalyzerException e)
@@ -56,8 +53,6 @@ public class CensusAnalyzerTest
     public void givenIndiaCensusCSVFileofWrongHeader_shouldReturnException() {
         try {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_HEADER);
         } catch (CensusAnalyzerException e) {
             Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
@@ -67,8 +62,6 @@ public class CensusAnalyzerTest
     public void givenIndiaCensusCSVFileofWrongDelimeter_shouldReturnException() {
         try {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_DELIMETER);
         } catch (CensusAnalyzerException e) {
             Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
@@ -78,8 +71,6 @@ public class CensusAnalyzerTest
     public void givenIndiaCensusCSVFileofWrongType_shouldReturnException() {
         try {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaCensusFile(WRONG_CENSUS_CSV_FILE_TYPE);
         } catch (CensusAnalyzerException e) {
             Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
@@ -123,8 +114,6 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATEFILE_PATH);
         }
         catch (CensusAnalyzerException e)
@@ -139,8 +128,6 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATE_CODE_FILE_HEADER);
         }
         catch (CensusAnalyzerException e)
@@ -154,8 +141,6 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATE_CODE_FILE_DELIMETER);
         }
         catch (CensusAnalyzerException e)
@@ -170,8 +155,6 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            ExpectedException exceptionRule = ExpectedException.none();
-            exceptionRule.expect(CensusAnalyzerException.class);
             censusAnalyzerMain.loadIndiaStateCodeFile(WRONG_STATE_CODE_FILE_TYPE);
         }
         catch (CensusAnalyzerException e)

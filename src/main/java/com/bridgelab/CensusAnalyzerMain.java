@@ -1,6 +1,6 @@
 package com.bridgelab;
 
-//import com.bridgelabz.ICsvBuilder;
+
 
 import com.bridgelabz.CsvBuilderException;
 import com.bridgelabz.CsvBuilderfactory;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -90,25 +89,15 @@ public class CensusAnalyzerMain
         {
             throw new CensusAnalyzerException("No data found",CensusAnalyzerException.ExceptionType.NO_DATA_FOUND);
         }
-        Comparator<IndiaCensusCSV>csvComparator = Comparator.comparing(census -> census.state);
-        this.sort(csvComparator);
+        //Comparator<IndiaCensusCSV>csvComparator = Comparator.comparing(census -> census.state);
+        this.sort(csvList);
         String sortedCensusJson = new Gson().toJson(csvList);
         return  sortedCensusJson;
     }
 
-    private void sort(Comparator<IndiaCensusCSV> csvComparator) {
-        for (int i = 0; i < csvList.size()-1; i++){
-            for(int j = 0; j < csvList.size()-i-1; j++){
-                IndiaCensusCSV censusCSV1 = csvList.get(j);
-                IndiaCensusCSV censusCSV2 = csvList.get(j + 1);
-                if(csvComparator.compare(censusCSV1,censusCSV2) > 0)
-                {
-                    csvList.set(j,censusCSV2);
-                    csvList.set(j + 1,censusCSV1);
-                }
-            }
-        }
-
+      private void sort(List<IndiaCensusCSV> csvList)
+    {
+        csvList.sort((IndiaCensusCSV state1, IndiaCensusCSV state2 )-> state1.getState().compareTo(state2.getState()));
     }
 }
 
