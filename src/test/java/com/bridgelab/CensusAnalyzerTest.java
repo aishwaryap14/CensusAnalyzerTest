@@ -31,9 +31,7 @@ public class CensusAnalyzerTest
             Assert.assertEquals(29,numOfRecords);
         }
         catch (CensusAnalyzerException e)
-        {
-            e.printStackTrace();
-        }
+        { }
     }
 
 
@@ -85,13 +83,12 @@ public class CensusAnalyzerTest
         try
         {
             CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
-            censusAnalyzerMain.loadIndiaCensusFile(INDIA_CENSUS_CSV_FILE_PATH);
-            String sortedData = censusAnalyzerMain.getStateWiseSortedCsvData();
+           // censusAnalyzerMain.loadIndiaCensusFile(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedData = censusAnalyzerMain.getSortedCsvData(INDIA_CENSUS_CSV_FILE_PATH);
             IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedData, IndiaCensusCSV[].class);
             Assert.assertEquals("Andhra Pradesh", censusCSV[0].state);
         }
         catch (CensusAnalyzerException e){}
-
     }
 
     //-----------------------------------------------------------------------------------//
@@ -105,9 +102,7 @@ public class CensusAnalyzerTest
             Assert.assertEquals(37, numOfRecords);
         }
         catch (CensusAnalyzerException e)
-        {
-            e.printStackTrace();
-        }
+        { }
     }
 
     @Test
@@ -175,6 +170,18 @@ public class CensusAnalyzerTest
             Assert.assertEquals(51, usCencusCount);
         }
         catch (CensusAnalyzerException e){}
-
+    }
+    @Test
+    public void whenGivenUSCensusCsvData_whenSortedOnState_ShouldReturnSortedResult()
+    {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+           // censusAnalyzerMain.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedData = censusAnalyzerMain.sortUSJsonData(US_CENSUS_CSV_FILE_PATH);
+            USCensusCSV[] censusCSV = new Gson().fromJson(sortedData, USCensusCSV[].class);
+            Assert.assertEquals(4779736,  censusCSV[0].population);
+        }
+        catch (CensusAnalyzerException e){}
     }
 }

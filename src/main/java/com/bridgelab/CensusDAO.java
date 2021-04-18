@@ -20,7 +20,7 @@ public class CensusDAO {
         stateCode = usCensusCSV.stateId;
         totalArea = usCensusCSV.totalArea;
         populationdensity = usCensusCSV.populationDensity;
-        populationdensity = usCensusCSV.population;
+        population = usCensusCSV.population;
    }
 
     public CensusDAO() { }

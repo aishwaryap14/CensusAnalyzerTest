@@ -12,7 +12,7 @@ public int tin;
     @CsvBindByName(column = "StateCode", required = true)
 public String stateCode;
 
-    public IndiaStateCodeCsv()
+    public IndiaStateCodeCsv(IndiaCensusCSV censusCSV)
     { }
     public IndiaStateCodeCsv(int srno, String stateName, int tin, String stateCode) {
         this.srno = srno;
@@ -21,11 +21,7 @@ public String stateCode;
         this.stateCode = stateCode;
     }
 
-    public String getStateName() {
-        return stateName;
-    }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-    }
+
+
 }

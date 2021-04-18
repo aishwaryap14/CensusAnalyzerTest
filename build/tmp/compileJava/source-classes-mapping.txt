@@ -7,7 +7,7 @@ com/bridgelab/IndiaStateCodeCsv.java
  com.bridgelab.IndiaStateCodeCsv
 com/bridgelab/USCensusCSV.java
  com.bridgelab.USCensusCSV
-com/bridgelab/CensusAnalyzerMain.java
- com.bridgelab.CensusAnalyzerMain
 com/bridgelab/CensusDAO.java
  com.bridgelab.CensusDAO
+com/bridgelab/CensusAnalyzerMain.java
+ com.bridgelab.CensusAnalyzerMain
