@@ -19,6 +19,8 @@ public class CensusAnalyzerTest
     public static String WRONG_STATE_CODE_FILE_HEADER = "src/test/resources/IndiaStateCodeHeader.csv";
     public static String WRONG_STATE_CODE_FILE_DELIMETER = "src/test/resources/IndiaStateCodeDelimeter.csv";
 
+    public static String US_CENSUS_CSV_FILE_PATH = "src/test/resources/USCensusData.csv";
+
     @Test
     public void givenIndiaCensusCSVFile_shouldReturnCorrectRecords()
     {
@@ -162,5 +164,17 @@ public class CensusAnalyzerTest
             Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_CONTENT_PROBLEM, e.type);
         }
     }
+//---------------------------------------------------------------------------------------------
 
+    @Test
+    public void givenUsCensusData_shouldReturnCorrectRecords() {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            int usCencusCount = censusAnalyzerMain.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            Assert.assertEquals(51, usCencusCount);
+        }
+        catch (CensusAnalyzerException e){}
+
+    }
 }

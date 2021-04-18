@@ -13,10 +13,7 @@ public int tin;
 public String stateCode;
 
     public IndiaStateCodeCsv()
-    {
-
-    }
-
+    { }
     public IndiaStateCodeCsv(int srno, String stateName, int tin, String stateCode) {
         this.srno = srno;
         this.stateName = stateName;
@@ -24,5 +21,11 @@ public String stateCode;
         this.stateCode = stateCode;
     }
 
+    public String getStateName() {
+        return stateName;
+    }
 
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
 }
