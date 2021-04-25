@@ -207,4 +207,28 @@ public class CensusAnalyzerTest
         }
         catch (CensusAnalyzerException e){}
     }
+
+    @Test
+    public void WhenGivenIndiaCensusData_whenSortedOnPopulationDen_shouldReturnSortedstate() {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            String sortedData = censusAnalyzerMain.sortIndiaUsJsonData( INDIA_CENSUS_CSV_FILE_PATH);
+            CensusDAO[] censusCSV = new Gson().fromJson(sortedData, CensusDAO[].class);
+            Assert.assertEquals("Uttar Pradesh", censusCSV[0].state);
+        }
+        catch (CensusAnalyzerException e){}
+    }
+
+    @Test
+    public void WhenGivenUSCensusData_whenSortedOnPopulationDen_shouldReturnSortedstate() {
+        try
+        {
+            CensusAnalyzerMain censusAnalyzerMain = new CensusAnalyzerMain();
+            String sortedData = censusAnalyzerMain.sortIndiaUsJsonData( US_CENSUS_CSV_FILE_PATH);
+            CensusDAO[] censusCSV = new Gson().fromJson(sortedData, CensusDAO[].class);
+            Assert.assertEquals("California", censusCSV[0].state);
+        }
+        catch (CensusAnalyzerException e){}
+    }
 }
